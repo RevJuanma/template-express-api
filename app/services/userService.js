@@ -4,15 +4,13 @@ import { SECRET } from "../constants/constants.js";
 
 const users = [];
 
-export const registrar = async ({ username, password }) => {
-  //FIND
+export const registrar = async ({ name, username, password }) => {
   const usuarioExistente = users.find((user) => user.username === username);
   if (usuarioExistente) throw new Error("El usuario ya existe");
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  // CREATE
-  const newUser = { id: username, username, password: hashedPassword };
+  const newUser = { id: username, username, name, password: hashedPassword };
   users.push(newUser);
 
   return { newUser };
@@ -33,6 +31,9 @@ export const login = async ({ username, password }) => {
 };
 
 export const listar = () => {
-  console.log(users)
-  return { usuarios: users.map((u) => ({ username: u.username })) };
+  return users;
+};
+
+export const buscarUsuarioPorId = (usuarioId) => {
+  return users.find((u) => u.id === usuarioId);
 };
