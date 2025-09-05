@@ -13,7 +13,9 @@ export const registrar = async ({ name, username, password }) => {
   const newUser = { id: username, username, name, password: hashedPassword };
   users.push(newUser);
 
-  return { newUser };
+  const newUserResponse = { username: newUser.username, name: newUser.name };
+
+  return newUserResponse;
 };
 
 export const login = async ({ username, password }) => {
@@ -31,9 +33,20 @@ export const login = async ({ username, password }) => {
 };
 
 export const listar = () => {
-  return users;
+  return users.map((usuario) => ({
+    id: usuario.id,
+    name: usuario.name,
+    username: usuario.username,
+  }));
 };
 
 export const buscarUsuarioPorId = (usuarioId) => {
-  return users.find((u) => u.id === usuarioId);
+  const usuario = users.find((user) => user.id === usuarioId);
+
+  const usuarioResponse = {
+    name: usuario.name,
+    username: usuario.username,
+  };
+
+  return usuarioResponse;
 };

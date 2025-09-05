@@ -26,24 +26,15 @@ export const loguearUsuario = async (req, res) => {
 export const listarUsuarios = (req, res) => {
   const listaDeUsuarios = listar();
 
-  const usuariosSafe = listaDeUsuarios.map((usuario) => ({
-    id: usuario.id,
-    name: usuario.name,
-    username: usuario.username,
-  }));
-
-  res.json(usuariosSafe);
+  res.json(listaDeUsuarios);
 };
 
 export const usuarioPorId = (req, res) => {
-  const usuario = buscarUsuarioPorId(req.params.id);
+  const userId = req.params.id;
+  const usuario = buscarUsuarioPorId(userId);
   if (!usuario) {
     return res.status(404).json({ error: "Usuario no encontrado" });
   }
-  const usuarioResponse = {
-    name: usuario.name,
-    username: usuario.username,
-  };
 
-  res.json(usuarioResponse);
+  res.json(usuario);
 };
