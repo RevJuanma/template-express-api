@@ -4,6 +4,7 @@ import {
   loguearUsuario,
   registrarUsuario,
   usuarioPorId,
+  vaciarUsuarios,
 } from "../controllers/userController.js";
 import { authMiddleware } from "../middlewares/authMiddleware.js";
 
@@ -17,5 +18,6 @@ userRoutes.use(authMiddleware);
 // Rutas protegidas
 userRoutes.get("/:id", usuarioPorId);
 userRoutes.get("/", listarUsuarios);
+userRoutes.delete("/all-users", vaciarUsuarios);
 
 export default userRoutes;

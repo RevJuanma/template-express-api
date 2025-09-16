@@ -3,6 +3,7 @@ import {
   listar,
   login,
   registrar,
+  vaciarListaUsuarios,
 } from "../services/userService.js";
 
 export const registrarUsuario = async (req, res) => {
@@ -37,4 +38,8 @@ export const usuarioPorId = (req, res) => {
   }
 
   res.json(usuario);
+};
+
+export const vaciarUsuarios = (req, res) => {
+  vaciarListaUsuarios()
 };

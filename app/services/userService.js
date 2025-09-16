@@ -50,3 +50,7 @@ export const buscarUsuarioPorId = (usuarioId) => {
 
   return usuarioResponse;
 };
+
+export const vaciarListaUsuarios = () => {
+  users = [];
+};
